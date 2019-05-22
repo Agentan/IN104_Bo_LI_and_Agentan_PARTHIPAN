@@ -20,7 +20,7 @@ class Tableau:
             if element.endswith('.txt'):
                 element_path = bdd_path + '/' + element
                 self.ID_docs[id] = element_path
-                article = open(element_path, encoding='utf-8', errors='ignore') #parametres optionnels utilises pour eviter des erreurs d'encodage
+                article = open(element_path, encoding='utf-8', errors='ignore') #paramètres optionnels utilisés pour eviter des erreurs d'encodage
                 article_content = article.read()
                 transf_article_content = word_tokenize(article_content)
                 mots_dejavus_ici = []
@@ -41,7 +41,7 @@ class Tableau:
         return id  # pour continuer a numeroter les documents
 
     def partie_log(self, document, word):
-        # la partie log(N/dfi) ne change pas pour w_ij et w_iq, on definit cette fonction pour eviter de la calculer deux fois
+        # la partie log(N/dfi) ne change pas pour w_ij et w_iq, on définit cette fonction pour éviter de la calculer deux fois
         try:
             df = len(self.INDEX[word])
             N = len(self.ID_docs)
@@ -60,7 +60,7 @@ class Tableau:
             print("the word '" + word + "' doesn't exist in the article")
             return 0
 
-    def similarity(self, document, transf_query):  ##calculer la similarite entre un document et la requete
+    def similarity(self, document, transf_query):  ##calculer la similarité entre un document et la requête
         A = 0;  # w_ij * w_iq
         B = 0;  # w_ij * w_ij
         for word in transf_query:
@@ -76,7 +76,7 @@ class Tableau:
             return (A / math.sqrt(B))
 
     def search(self):
-        query = input('enter your query :') # demande de la requete
+        query = input('enter your query :') # demande de la requête
         transf_query = word_tokenize(query)
         reunion = set(range(len(self.ID_docs)));
         result = {};
@@ -85,13 +85,13 @@ class Tableau:
                 containing = set(self.INDEX[word].keys());
                 reunion = reunion & containing
         for document in reunion:
-            result[document] = self.similarity(document, transf_query)  #calcule la similarite entre la requete et chaque document ou appara?t un mot de la requ¨ºte
-            sorted_result = sorted(result.items(), key=lambda kv: kv[1], reverse=True) # trie les documents selon la valeur de leurs similarit¨¦s avec la requ¨ºte
+            result[document] = self.similarity(document, transf_query)  #calcule la similarité entre la requête et chaque document où apparaît un mot de la requête
+            sorted_result = sorted(result.items(), key=lambda kv: kv[1], reverse=True) # trie les documents selon la valeur de leurs similarités avec la requête
         for couple in sorted_result:
-            print(self.ID_docs[couple[0]]) #affiche les resultats de la recherche
+            print(self.ID_docs[couple[0]]) #affiche les résultats de la recherche
 
 
-def load(save_path): #charger l'index precedemment enregistre
+def load(save_path): #charger l'index précédemment enregistré
     f = open(save_path, 'rb')
     D = Tableau()
     D.INDEX = pickle.load(f)
