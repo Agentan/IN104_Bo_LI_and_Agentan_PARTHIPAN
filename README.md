@@ -6,4 +6,6 @@ Dans le premier cas, il vous sera demandé d'indiquer le chemin de la base de do
 
 Ensuite vient le moment où vous pouvez entrer votre requête pour recherche des articles à partir de mots clés. Notre moteur de recherche est sensible à la casse des caractères. Il discrimine les articles de la base de données principalement à partir des mots qui ont, a priori, le plus d'importance dans la requête (et non pas à partir de mots très courants comme "le", "la", "de", "et", ...).
 
+Si vous souhaitez décider vous-même de l'emplacement où seront enregistrés les index, vous pouvez écrire le chemin du dossier où vous désirez effectuer la sauvegarde à la ligne 6 à la place de 'os.getcwd()' . Par défaut, la commande 'os.getcwd' indique le chemin du dossier contenant le fichier main.py au moment de l'exécution.
+
 
