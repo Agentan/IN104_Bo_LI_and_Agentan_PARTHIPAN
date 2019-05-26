@@ -86,7 +86,7 @@ class Tableau:
                 reunion = reunion & containing
         for document in reunion:
             result[document] = self.similarity(document, transf_query)  #calcule la similarité entre la requête et chaque document où apparaît un mot de la requête
-            sorted_result = sorted(result.items(), key=lambda kv: kv[1], reverse=True) # trie les documents selon la valeur de leurs similarités avec la requête
+            sorted_result = sorted(result.items(), key=lambda kv: kv[1]) # trie les documents selon la valeur de leurs similarités avec la requête
         for couple in sorted_result:
             print(self.ID_docs[couple[0]]) #affiche les résultats de la recherche
 
